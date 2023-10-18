@@ -1,5 +1,6 @@
 <script>
-	import LogRow from '$components/LogRow.svelte'
+	import LogRow from "$components/LogRow.svelte"
+	import TableHeading from "$components/TableHeading.svelte";
 	import {
 		Table,
 		TableBody,
@@ -9,13 +10,15 @@
 		TableHeadCell,
 	} from "flowbite-svelte";
 
+
+
 	export let data;
 </script>
 <Table class="w-full">
 	<TableHead >
 		<TableHeadCell>Date</TableHeadCell>
-		<TableHeadCell>Sets</TableHeadCell>
-		<TableHeadCell>Reps</TableHeadCell>
+		<TableHeadCell><TableHeading color="red">Sets</TableHeading></TableHeadCell>
+		<TableHeadCell><TableHeading color="blue">Reps</TableHeading></TableHeadCell>
 	</TableHead>
 	<TableBody>
 		{#each data.items as routine} 
