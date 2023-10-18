@@ -25,9 +25,9 @@
     <title>Workout Tracker</title>
 </svelte:head>
 
-<main class="grid grid-cols-[0.2fr_1fr]">
-    <aside class="w-28 h-screen">
-        <Sidebar {activeUrl} class="h-full">
+<main class="grid grid-cols-[0.1fr_1fr]">
+    <aside class="w-full h-screen">
+        <Sidebar {activeUrl} class="w-full h-full">
             <SidebarWrapper class="h-full">
                 <SidebarGroup>
                     {#each routes as route}
