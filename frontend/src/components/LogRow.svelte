@@ -3,7 +3,7 @@
  export let log;
 
  const stripTime = (input: string) => {
-     return input.split(" ")[0];
+     return input.toString().split(" ")[0];
  }
 </script>
 
