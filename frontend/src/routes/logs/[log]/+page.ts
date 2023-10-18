@@ -11,7 +11,6 @@ export async function load({ fetch, params }) {
 		)}'`,
 	);
 	let json = await data.json();
-	console.log(json);
 
 	return json;
 }
