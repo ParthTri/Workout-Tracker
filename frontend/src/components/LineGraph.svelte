@@ -33,7 +33,7 @@
 		height = d3.select(vis).node().getBoundingClientRect().height - margin.top - margin.bottom;
 
 		let yScale = d3.scaleLinear().domain([0, 50]);
-		let xScale = d3.scaleTime([new Date("2023-01-01"), new Date("2023-12-31")], [0, width])
+		let xScale = d3.scaleTime([data[0].date, data[data.length-1].date], [0, width])
 
 		// init scales according to new width & height
 		xScale.range([0, width]);
