@@ -3,28 +3,12 @@
 	import * as d3 from "d3"
 
 	let vis;
-
-	// let data = [];
-	// 	for (let i = 0; i < 12; ++i) {
-	// 		data.push({date: new Date(`2023-${Math.floor(Math.random() * 13)}-${Math.floor(Math.random() * 31 )}`), value: Math.random() * 50})
-	// 	}
-	// 
-	// data.sort((a, b) => {
-	// 		if (a.date.getTime() < b.date.getTime()) {
-	// 			return -1;
-	// 		} else if (a.date.getTime() > b.date.getTime()) {
-	// 			return 1;
-	// 		}
-	// 		return 0;
-	// 	})
 	export let data = [];
 
-	if (data.length != 0) {
-		data.map(val => {
-			let date = val.date.split(" ")[0]
-			val.date = new Date(date)
-		})
-	};
+	data.map(val => {
+		let date = val.date.split(" ")[0]
+		val.date = new Date(date)
+	})
 
 	let width: number;
 	let height: number;
