@@ -6,6 +6,6 @@
 
 
 <section class="grid grid-rows-[2fr_1fr]">
-	<LineGraph />
+	<LineGraph data={data.items}/>
 	<LogTable data={data}/>
 </section>
