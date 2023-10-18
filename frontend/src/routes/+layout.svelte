@@ -12,10 +12,6 @@
    {
      name: "Routines",
      path:"/routines"
-   },
-   {
-     name:"Logs",
-     path:"/logs"
    }
  ]
 </script>
@@ -25,7 +21,7 @@
     <title>Workout Tracker</title>
 </svelte:head>
 
-<main class="grid grid-cols-[0.1fr_1fr]">
+<main class="grid md:grid-cols-[0.1fr_1fr]">
     <aside class="w-full h-screen">
         <Sidebar {activeUrl} class="w-full h-full">
             <SidebarWrapper class="h-full">
