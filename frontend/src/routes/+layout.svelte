@@ -25,15 +25,19 @@
     <title>Workout Tracker</title>
 </svelte:head>
 
-<Sidebar {activeUrl}>
-    <SidebarWrapper>
-        <SidebarGroup>
-            {#each routes as route}
-              <SidebarItem label={route.name} href={route.path}>
-              </SidebarItem>
-            {/each}
-        </SidebarGroup>
-    </SidebarWrapper>
-</Sidebar>
+<main class="grid grid-cols-[0.2fr_1fr]">
+    <aside class="w-28 h-screen">
+        <Sidebar {activeUrl} class="h-full">
+            <SidebarWrapper class="h-full">
+                <SidebarGroup>
+                    {#each routes as route}
+                        <SidebarItem label={route.name} href={route.path}>
+                        </SidebarItem>
+                    {/each}
+                </SidebarGroup>
+            </SidebarWrapper>
+        </Sidebar>
+    </aside>
 
-<slot />
+    <slot />
+</main>
