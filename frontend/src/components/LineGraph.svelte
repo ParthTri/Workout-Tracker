@@ -64,6 +64,15 @@
 			 .attr("r", 3)
 			 .style("fill", "steelblue");
 
+		svg.append("g").selectAll("dot")
+			 .data(data)
+			 .enter()
+			 .append("circle")
+			 .attr("cx", (d) => xScale(d.date))
+			 .attr("cy", (d) => yScale(d.sets))
+			 .attr("r", 3)
+			 .style("fill", "red");
+
 		// draw line
 		svg.append('path')
 			 .datum(data)
@@ -73,7 +82,19 @@
 			 .attr("d", d3.line()
 										.x((d) => xScale(d.date))
 										.y((d) => yScale(d.reps)))
+
+		svg.append('path')
+			 .datum(data)
+			 .attr("fill", "none")
+			 .attr("stroke", "red")
+			 .attr("stroke-width", 1.5)
+			 .attr("d", d3.line()
+										.x((d) => xScale(d.date))
+										.y((d) => yScale(d.sets)))
 		
+		
+
+
 	}
 
 </script>
