@@ -8,9 +8,9 @@
 </svelte:head>
 
 
-<div>
+<div class="grid grid-cols-3 auto-rows-max gap-3">
     {#each data.items as routine} 
-        <Card href="/logs/">
+        <Card class="h-44 text-center" href="/routines/${routine.id}">
             <h3>{routine.name}</h3>
             <h5>{routine.created}</h5>
         </Card>
