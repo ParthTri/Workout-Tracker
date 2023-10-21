@@ -2,6 +2,8 @@
 	import { onMount } from "svelte"
 	import * as d3 from "d3"
 
+	import { drawPoints, drawLine}from "$lib/graphPoints.ts"
+
 	let vis;
 	export let data = [];
 
@@ -54,47 +56,15 @@
 		svg.append("g")
     		.call(d3.axisLeft(yScale));
 
-		// draw datapoint
-		svg.append("g").selectAll("dot")
-			 .data(data)
-			 .enter()
-			 .append("circle")
-			 .attr("cx", (d) => xScale(d.date))
-			 .attr("cy", (d) => yScale(d.reps))
-			 .attr("r", 3)
-			 .style("fill", "steelblue");
+		// Reps
+		drawPoints(svg, "steelblue", data, xScale, yScale, "reps")
+		drawLine(svg, "steelblue", data, xScale, yScale, "reps")
 
-		svg.append("g").selectAll("dot")
-			 .data(data)
-			 .enter()
-			 .append("circle")
-			 .attr("cx", (d) => xScale(d.date))
-			 .attr("cy", (d) => yScale(d.sets))
-			 .attr("r", 3)
-			 .style("fill", "red");
+		// Sets
+		drawPoints(svg, "red", data, xScale, yScale, "sets")
+		drawLine(svg, "red", data, xScale, yScale, "sets")
 
-		// draw line
-		svg.append('path')
-			 .datum(data)
-			 .attr("fill", "none")
-			 .attr("stroke", "steelblue")
-			 .attr("stroke-width", 1.5)
-			 .attr("d", d3.line()
-										.x((d) => xScale(d.date))
-										.y((d) => yScale(d.reps)))
-
-		svg.append('path')
-			 .datum(data)
-			 .attr("fill", "none")
-			 .attr("stroke", "red")
-			 .attr("stroke-width", 1.5)
-			 .attr("d", d3.line()
-										.x((d) => xScale(d.date))
-										.y((d) => yScale(d.sets)))
 		
-		
-
-
 	}
 
 </script>
