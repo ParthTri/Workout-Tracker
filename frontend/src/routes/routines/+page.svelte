@@ -1,5 +1,6 @@
 <script>
     import { Card } from 'flowbite-svelte';
+	import { stripTime } from "$lib/formatting.ts"
     export let data;
 </script>
 
@@ -12,7 +13,7 @@
     {#each data.items as routine} 
         <Card class="h-44 text-center" href="/routines/${routine.id}">
             <h3>{routine.name}</h3>
-            <h5>{routine.created}</h5>
+            <h5>{stripTime(routine.created)}</h5>
         </Card>
     {/each}
 </div>

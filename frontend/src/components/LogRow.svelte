@@ -1,10 +1,8 @@
 <script lang="ts">
  import { TableBodyCell, TableBodyRow } from 'flowbite-svelte';
+import { stripTime } from "$lib/formatting.ts"
  export let log;
 
- const stripTime = (input: string) => {
-     return input.toString().split(" ")[0];
- }
 </script>
 
 <TableBodyRow class="h-4">

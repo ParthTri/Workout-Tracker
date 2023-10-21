@@ -1,5 +1,6 @@
 <script>
     import { Card } from 'flowbite-svelte';
+	import { stripTime } from "$lib/formatting.ts";
  export let data;
 </script>
 
@@ -8,7 +9,7 @@
         {#if routine.Active == true}
           <Card class="h-44 text-center" href="/logs/${routine.id}">
               <h3>{routine.Name}</h3>
-              <h5>{routine.Created}</h5>
+              <h5>{stripTime(routine.Created)}</h5>
           </Card>
         {/if}
     {/each}
