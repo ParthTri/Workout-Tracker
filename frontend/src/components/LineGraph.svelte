@@ -2,7 +2,7 @@
 	import { onMount } from "svelte"
 	import * as d3 from "d3"
 
-	import { drawPoints, drawLine}from "$lib/graphPoints.ts"
+	import GraphPoints from "$lib/graphPoints.ts"
 
 	let vis;
 	export let data = [];
@@ -57,16 +57,13 @@
     		.call(d3.axisLeft(yScale));
 
 		// Reps
-		drawPoints(svg, "steelblue", data, xScale, yScale, "reps")
-		drawLine(svg, "steelblue", data, xScale, yScale, "reps")
+		GraphPoints(svg, "steelblue", data, xScale, yScale, "reps")
 
 		// Sets
-		drawPoints(svg, "red", data, xScale, yScale, "sets")
-		drawLine(svg, "red", data, xScale, yScale, "sets")
+		GraphPoints(svg, "red", data, xScale, yScale, "sets")
 
 		if (data[0].weight != -1) {
-			drawPoints(svg, "green", data, xScale, yScale, "weight")
-			drawLine(svg, "green", data, xScale, yScale, "weight")
+			GraphPoints(svg, "green", data, xScale, yScale, "weight")
 		}
 		
 	}

@@ -45,3 +45,15 @@ export function drawLine(
 				.y((d) => yScale(d[key])),
 		);
 }
+
+export default function GraphPoints(
+	graph: ScaleLinear,
+	color: string,
+	data: Array<any>,
+	xScale: any,
+	yScale: any,
+	key: string,
+): void {
+	drawPoints(graph, color, data, xScale, yScale, key);
+	drawLine(graph, color, data, xScale, yScale, key);
+}
