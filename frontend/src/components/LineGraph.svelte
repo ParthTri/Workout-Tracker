@@ -64,6 +64,10 @@
 		drawPoints(svg, "red", data, xScale, yScale, "sets")
 		drawLine(svg, "red", data, xScale, yScale, "sets")
 
+		if (data[0].weight != -1) {
+			drawPoints(svg, "green", data, xScale, yScale, "weight")
+			drawLine(svg, "green", data, xScale, yScale, "weight")
+		}
 		
 	}
 
