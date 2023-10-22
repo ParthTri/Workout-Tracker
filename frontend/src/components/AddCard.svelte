@@ -3,7 +3,7 @@
 	import logData from "$lib/logData.ts";
 
 	export let excerciseID = null;
-	export let showWeight = true;
+	export let showWeight;
 
 	let date;
 	let reps;

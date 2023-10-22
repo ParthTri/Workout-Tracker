@@ -6,9 +6,12 @@
 
 	export let data;
 
-	let show = true;
+	let show = false;
 	const toggleShow = () => show = !show;
+
 	let excerciseID = data.items[0].ExcerciseID;
+	let showWeight = data.items[0].weight != -1;
+
 </script>
 
 
@@ -18,7 +21,7 @@
 	<Add {toggleShow}/>
 
 	{#if show}
-		<AddCard {excerciseID}/>
+		<AddCard {showWeight} {excerciseID}/>
 	{/if}
 
 </section>
