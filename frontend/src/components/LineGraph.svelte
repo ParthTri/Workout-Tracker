@@ -1,11 +1,33 @@
 <script lang="ts">
 	import { onMount } from "svelte"
 	import * as d3 from "d3"
+	import type { LogData } from "$lib/interfaces";
 
 	import GraphPoints from "$lib/graphPoints.ts"
 
-	let vis;
-	export let data = [];
+	let vis: HTMLElement;
+	export let data: Array<LogData> = [];
+
+	let today = new Date();
+
+	let first: LogData = data.length != 0 ? data[0] : {
+		ExcerciseID: 0,
+		date: today.toISOString(),
+		sets: 0,
+		reps: 0,
+		weight: 0
+	};
+
+	let nextMonth: Date = new Date()
+	nextMonth.setMonth(today.getMonth() + 1);
+
+	let last: LogData = data.length != 0 ? data[data.length - 1] : {
+		ExcerciseID: 0,
+		date: nextMonth.toISOString(),
+		sets: 0,
+		reps: 0,
+		weight: 0
+	};
 
 	data.map(val => {
 		let date = val.date.split(" ")[0]
@@ -35,7 +57,7 @@
 		height = d3.select(vis).node().getBoundingClientRect().height - margin.top - margin.bottom;
 
 		let yScale = d3.scaleLinear().domain([0, 50]);
-		let xScale = d3.scaleTime([data[0].date, data[data.length-1].date], [0, width])
+		let xScale = d3.scaleTime([first.date, last.date], [0, width])
 
 		// init scales according to new width & height
 		xScale.range([0, width]);
