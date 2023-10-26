@@ -1,20 +1,34 @@
 <script>
-	import { Card, Label, Input } from 'flowbite-svelte';
-	import logData from "$lib/logData.ts";
+	import { Card } from 'flowbite-svelte';
+	import logData, { extractData } from "$lib/logData.ts";
 	import { stripTime } from "$lib/formatting.ts";
 
 	export let excerciseID = null;
 	export let showWeight;
+	export let updateState;
 
 	let date = new Date().toISOString().split("T")[0];
 	export let success;
 	
+	const handleSubmission = (e) => {
+		let log = extractData(e)
+		logData(log, excerciseID)
+					 .then(res => {
+						 if (res.code == 200) {
+							 /* success(1) */
+							updateState(log)
+						 }
+						 /* else {
+								success(-1)
+								} */
+					 })
+	}
 
 </script>
 
-<Card class="absolute left-2/4 top-2/4 translate-x-[-25%] translate-y-[-50%] w-96 drop-shadow-2xl">
+<Card class="absolute left-2/4 top-2/4 translate-x-[-50%] translate-y-[-50%] w-96 drop-shadow-2xl">
 	<form class="grid grid-cols-1 grid-rows-auto gap-4"
-		on:submit|preventDefault={(e) => logData(e, excerciseID)}>
+		on:submit|preventDefault={(e) => handleSubmission(e)}>
 		<label class="flex flex-col" for="date">
 			<span class="text-sm font-medium text-slate-700">Date</span>
 			<input name="date" type="date" value={date}/>
@@ -42,6 +56,5 @@
 			Log
 		</button>
 	</form>
-
 </Card>
 
