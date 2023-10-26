@@ -17,12 +17,12 @@
 		<TableHeadCell>Date</TableHeadCell>
 		<TableHeadCell><TableHeading color="red">Sets</TableHeading></TableHeadCell>
 		<TableHeadCell><TableHeading color="blue">Reps</TableHeading></TableHeadCell>
-		{#if data.items[0].weight != -1}
+		{#if data[0].weight != -1}
 			<TableHeadCell><TableHeading color="green">Weight</TableHeading></TableHeadCell>
 		{/if}
 	</TableHead>
 	<TableBody>
-		{#each data.items as routine} 
+		{#each data as routine} 
 			<LogRow log={routine}/>
 		{/each}
 	</TableBody>
