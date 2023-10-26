@@ -2,7 +2,7 @@
 	import LogTable from "$components/LogTable.svelte"
 	import LineGraph from "$components/LineGraph.svelte"
 	import Add from "$components/Add.svelte"
-	import AddCard from "$components/AddCard.svelte"
+	import LogCard from "$components/formCards/LogCard.svelte"
 	import Notification from "$components/Notification.svelte"
 
 	export let data;
@@ -29,7 +29,7 @@
 	<Add {toggleShow}/>
 
 	{#if show}
-		<AddCard updateState={addData} {showWeight} {excerciseID}/>
+		<LogCard updateState={addData} {showWeight} {excerciseID}/>
 	{/if}
 
 	<!-- <Notification {success}>
