@@ -14,7 +14,7 @@ export interface ExcerciseData {
 }
 
 export interface RoutineData {
-	id: string;
+	id?: string;
 	name: string;
-	created: string;
+	created?: string;
 }
