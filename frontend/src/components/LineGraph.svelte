@@ -5,28 +5,35 @@
 
 	import GraphPoints from "$lib/graphPoints.ts"
 
-	let vis: HTMLElement;
 	export let data: Array<LogData> = [];
+	export let showWeight: boolean;
+	export let excerciseID;
+
+	let vis: HTMLElement;
 
 	let today = new Date();
-
 	let first: LogData = data.length != 0 ? data[0] : {
-		ExcerciseID: 0,
-		date: today.toISOString(),
+		ExcerciseID: excerciseID,
+		date: today,
 		sets: 0,
 		reps: 0,
-		weight: 0
+		weight: showWeight ? 0 : -1,
 	};
 
-	let nextMonth: Date = new Date()
-	nextMonth.setMonth(today.getMonth() + 1);
+	let later: Date = new Date()
+	if (today.getMonth() == 12) {
+		later.setFullYear(today.getFullYear()+1)
+		later.setMonth(1);
+	} else {
+		later.setMonth(today.getMonth() + 1);
+	}
 
 	let last: LogData = data.length != 0 ? data[data.length - 1] : {
-		ExcerciseID: 0,
-		date: nextMonth.toISOString(),
+		ExcerciseID: excerciseID,
+		date: later,
 		sets: 0,
 		reps: 0,
-		weight: 0
+		weight: showWeight ? 0 : -1,
 	};
 
 	data.map(val => {
@@ -84,7 +91,7 @@
 		// Sets
 		GraphPoints(svg, "red", data, xScale, yScale, "sets")
 
-		if (data[0].weight != -1) {
+		if (first.weight != -1) {
 			GraphPoints(svg, "green", data, xScale, yScale, "weight")
 		}
 		

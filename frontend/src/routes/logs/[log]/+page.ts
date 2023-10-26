@@ -4,7 +4,10 @@ export async function load({ fetch, params }) {
 			1,
 		)}'`,
 	);
+
 	let json = await data.json();
+
+	json.urlId = params.log.substring(1)
 
 	return json;
 }

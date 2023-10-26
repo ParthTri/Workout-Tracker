@@ -8,25 +8,25 @@
 	import type { LogData } from "$lib/interfaces.js"
 
 	export let data;
-	data = data.items;
+
+	let dataLogs = data != undefined ? data.items : [];
 	
 	const addData = (log: LogData) => {
-		data.push(log);
-		data = data
+		dataLogs.push(log);
+		dataLogs = dataLogs
 	}
 
 	let show = false;
 	const toggleShow = () => show = !show;
-
-	let excerciseID = data[0].ExcerciseID;
-	let showWeight = data[0].weight != -1;
+	let excerciseID = data != undefined ? data.urlId : "";
+	let showWeight = dataLogs.length != 0 ? dataLogs[0].weight != -1 : false;
 
 </script>
 
 
 <section class="grid grid-rows-[2fr_1fr]">
-	<LineGraph data={data}/>
-	<LogTable data={data}/>
+	<LineGraph data={dataLogs} {showWeight} {excerciseID}/>
+	<LogTable data={dataLogs}/>
 	<Add {toggleShow}/>
 
 	{#if show}
