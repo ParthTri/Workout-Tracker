@@ -3,10 +3,16 @@
 	import LineGraph from "$components/LineGraph.svelte"
 	import Add from "$components/Add.svelte"
 	import AddCard from "$components/AddCard.svelte"
+	import Notification from "$components/Notification.svelte"
 
 	export let data;
 	data = data.items;
 	
+	const addData = (log) => {
+		console.log(log)
+		data.push(log);
+		data = data
+	}
 
 	let show = false;
 	const toggleShow = () => show = !show;
@@ -23,8 +29,11 @@
 	<Add {toggleShow}/>
 
 	{#if show}
-		<AddCard {showWeight} {excerciseID}/>
+		<AddCard updateState={addData} {showWeight} {excerciseID}/>
 	{/if}
 
+	<!-- <Notification {success}>
+			 <p>Hello World</p>
+			 </Notification> -->
 </section>
 
