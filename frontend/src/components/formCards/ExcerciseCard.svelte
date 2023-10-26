@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Card, Toggle } from 'flowbite-svelte';
+	import { Card } from 'flowbite-svelte';
 	import FormLabel from "./FormLabel.svelte"
 	import Button from "./Button.svelte"
 	import type { ExcerciseData } from "$lib/interfaces.ts"
