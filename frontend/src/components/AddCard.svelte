@@ -1,14 +1,14 @@
 <script>
 	import { Card, Label, Input } from 'flowbite-svelte';
 	import logData from "$lib/logData.ts";
+	import { stripTime } from "$lib/formatting.ts";
 
 	export let excerciseID = null;
 	export let showWeight;
 
-	let date;
-	let reps;
-	let sets;
-	let weight;
+	let date = new Date().toISOString().split("T")[0];
+	export let success;
+	
 
 </script>
 
@@ -17,7 +17,7 @@
 		on:submit|preventDefault={(e) => logData(e, excerciseID)}>
 		<label class="flex flex-col" for="date">
 			<span class="text-sm font-medium text-slate-700">Date</span>
-			<input name="date" type="date"/>
+			<input name="date" type="date" value={date}/>
 		</label>
 
 		<label class="flex flex-col" for="sets">
