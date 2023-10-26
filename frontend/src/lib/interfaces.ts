@@ -12,3 +12,9 @@ export interface ExcerciseData {
 	Name: string;
 	Weight: boolean;
 }
+
+export interface RoutineData {
+	id: string;
+	name: string;
+	created: string;
+}
