@@ -5,20 +5,27 @@
 	import Button from "./Button.svelte"
 
 	import type { RoutineData } from "$lib/interfaces.ts"
-	import { extractData } from "$lib/logData.ts";
+	import { createRoutine, extractFormData } from "$lib/create.ts";
 
 	export let updateState: (val: any) => void;
 	export let toggleShow : () => void;
 
 	const handleSubmission = (event: HTMLFormElement) => {
 		let tmp = {} as RoutineData;
-		extractData(event, tmp);
+		extractFormData(event, tmp);
 
 		let formData: RoutineData = {
 			name: tmp.name,
 		}
 		
-		updateState(formData);
+		createRoutine(formData).then(res => {
+			if (res.code == undefined) {
+				updateState(res);
+				toggleShow()
+			} else {
+				console.log(res)
+			}
+			})
 	}
 </script>
 
