@@ -1,27 +1,34 @@
-<script>
+<script lang="ts">
 	import { Card } from 'flowbite-svelte';
-	import logData, { extractData } from "$lib/logData.ts";
-	import { stripTime } from "$lib/formatting.ts";
 
-	export let excerciseID = null;
-	export let showWeight;
-	export let updateState;
+	import { extractFormData, createLog } from '$lib/create';
+	import type { LogData } from '$lib/interfaces';
+
+
+	export let excerciseID: string = "";
+	export let showWeight: boolean;
+	export let updateState: (obj: LogData) => void;
+	export let toggleShow: () => void;
 
 	let date = new Date().toISOString().split("T")[0];
-	export let success;
 	
-	const handleSubmission = (e) => {
-		let log = extractData(e)
-		logData(log, excerciseID)
-					 .then(res => {
-						 if (res.code == 200) {
-							 /* success(1) */
-							updateState(log)
-						 }
-						 /* else {
-								success(-1)
-								} */
-					 })
+	const handleSubmission = (e: HTMLFormElement) => {
+		let log = {} as LogData;
+		extractFormData(e, log);
+
+		if (log.weight == undefined) {
+			log.weight = -1;
+		}
+
+		createLog(log, excerciseID)
+			.then(res => {
+				if (res.code == undefined) {
+					updateState(res)
+					toggleShow()
+				} else {
+					console.log(res)
+				} 
+		})
 	}
 
 </script>

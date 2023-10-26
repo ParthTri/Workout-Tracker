@@ -5,11 +5,12 @@
 	import LogCard from "$components/formCards/LogCard.svelte"
 	import Notification from "$components/Notification.svelte"
 
+	import type { LogData } from "$lib/interfaces.js"
+
 	export let data;
 	data = data.items;
 	
-	const addData = (log) => {
-		console.log(log)
+	const addData = (log: LogData) => {
 		data.push(log);
 		data = data
 	}
@@ -29,7 +30,7 @@
 	<Add {toggleShow}/>
 
 	{#if show}
-		<LogCard updateState={addData} {showWeight} {excerciseID}/>
+		<LogCard updateState={addData} {showWeight} {excerciseID} {toggleShow} />
 	{/if}
 
 	<!-- <Notification {success}>

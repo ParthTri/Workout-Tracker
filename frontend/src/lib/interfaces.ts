@@ -1,5 +1,5 @@
 export interface LogData {
-	ExcerciseID: number;
+	ExcerciseID: string;
 	date: string;
 	sets: number;
 	reps: number;
@@ -10,7 +10,7 @@ export interface ExcerciseData {
 	RoutineID: string;
 	Date: string;
 	Name: string;
-	Weight: boolean;
+	Weight: number;
 }
 
 export interface RoutineData {

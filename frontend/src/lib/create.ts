@@ -43,7 +43,7 @@ export async function createExercise(
 
 export async function createLog(
 	log: LogData,
-	excerciseID: number,
+	excerciseID: string,
 ): Promise<any> {
 	log.ExcerciseID = excerciseID;
 

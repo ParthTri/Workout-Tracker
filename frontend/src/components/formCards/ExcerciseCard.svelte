@@ -4,21 +4,19 @@
 	import Button from "./Button.svelte"
 	import type { ExcerciseData } from "$lib/interfaces.ts"
 
-	import { extractData } from "$lib/logData.ts";
-	import createExercise from "$lib/createExercise.ts";
-
+	import { extractFormData, createExercise } from '$lib/create';
 
 	let date = new Date().toISOString().split("T")[0];
-	export let routineID;
+	export let routineID: string;
 
-	export let updateState;
-	export let toggleShow;
+	export let updateState: (obj: ExcerciseData) => void;
+	export let toggleShow: () => void;
 
-	const handleSubmission = (event: HTMLFormEvent) => {
-		let tmp = {} as ExcerciseData;
-		extractData(event, tmp);
+	const handleSubmission = (event: HTMLFormElement) => {
+		let tmp = {};
+		extractFormData(event, tmp);
 
-		let formData: ExcerciseCard = {
+		let formData: ExcerciseData = {
 			RoutineID: routineID,
 			Date: date,
 			Name: tmp.name,
@@ -27,11 +25,11 @@
 		}
 		
 		createExercise(formData).then(res => {
-			console.log(res)
 			if (res.code == undefined) {
-				console.log(res)
-				updateState(formData);
+				updateState(res);
 				toggleShow();
+			} else {
+				console.log(res)
 			}
 		})
 	}
