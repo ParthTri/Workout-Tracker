@@ -29,13 +29,10 @@ export function extractData(form: HTMLFormElement): LogData {
 }
 
 export default async function logData(
-	data: HTMLFormElement,
+	log: LogData,
 	excerciseID: number,
-): Promise<void> {
-	let extractedData: LogData = extractData(data.originalTarget);
-	extractedData.ExcerciseID = excerciseID;
-	delete extractedData[""];
-	console.log(extractedData);
+): Promise<any> {
+	log.ExcerciseID = excerciseID;
 
 	let response = await fetch(
 		"http://127.0.0.1:8090/api/collections/Log/records",
@@ -50,4 +47,6 @@ export default async function logData(
 			body: JSON.stringify(extractedData),
 		},
 	);
+
+	return response.json();
 }
