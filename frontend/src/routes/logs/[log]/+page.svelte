@@ -21,8 +21,8 @@
 	let excerciseID = data != undefined ? data.urlId : "";
 	let showWeight = dataLogs.length != 0 ? dataLogs[0].weight != -1 : false;
 
+	// BUG: New Routines not showing weight
 </script>
-
 
 <section class="grid grid-rows-[2fr_1fr]">
 	<LineGraph data={dataLogs} {showWeight} {excerciseID}/>
