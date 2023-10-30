@@ -1,39 +1,41 @@
 <script lang="ts">
- import { page } from '$app/stores';
- import "../app.postcss";
-  import { Sidebar, SidebarGroup, SidebarItem, SidebarWrapper } from 'flowbite-svelte';
- $: activeUrl = $page.url.pathname;
+	import "../app.postcss";
+	import { BottomNav, BottomNavItem } from 'flowbite-svelte';
+	import { HomeSolid, GridSolid, AdjustmentsVerticalSolid } from 'flowbite-svelte-icons';
 
- var routes = [
-   {
-     name: "Dash",
-     path: "/"
-   },
-   {
-     name: "Routines",
-     path:"/routines"
-   }
- ]
+	var routes = [
+		{
+			name: "Dash",
+			path: "/"
+		},
+		{
+			name: "Routines",
+			path:"/routines"
+		}
+	]
 </script>
 
 
 <svelte:head>
-    <title>Workout Tracker</title>
+	<title>Workout Tracker</title>
 </svelte:head>
 
 <main class="grid md:grid-cols-[0.1fr_1fr]">
-    <aside class="w-full h-screen">
-        <Sidebar {activeUrl} class="w-full h-full">
-            <SidebarWrapper class="h-full">
-                <SidebarGroup>
-                    {#each routes as route}
-                        <SidebarItem label={route.name} href={route.path}>
-                        </SidebarItem>
-                    {/each}
-                </SidebarGroup>
-            </SidebarWrapper>
-        </Sidebar>
-    </aside>
+	<slot />
 
-    <slot />
+	<BottomNav position="absolute" navType="group" classInner="grid-cols-4">
+		<BottomNavItem href="/">
+			<HomeSolid />
+		</BottomNavItem>
+
+		<BottomNavItem href="/routines">
+			<GridSolid />
+		</BottomNavItem>
+
+		<BottomNavItem hrerf="/settings">
+			<AdjustmentsVerticalSolid />
+		</BottomNavItem>
+
+	</BottomNav>
+
 </main>
