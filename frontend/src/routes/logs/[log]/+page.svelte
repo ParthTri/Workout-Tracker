@@ -19,14 +19,12 @@
 	let show = false;
 	const toggleShow = () => show = !show;
 	let excerciseID = data != undefined ? data.urlId : "";
-	let showWeight = dataLogs.length != 0 ? dataLogs[0].weight != -1 : false;
-
-	// BUG: New Routines not showing weight
+	let showWeight = data.weight;
 </script>
 
 <section class="grid grid-rows-[3fr_1fr] gap-2">
 	<LineGraph data={dataLogs} {showWeight} {excerciseID}/>
-	<LogTable data={dataLogs}/>
+	<LogTable data={dataLogs} {showWeight}/>
 	<Add {toggleShow}/>
 
 	{#if show}

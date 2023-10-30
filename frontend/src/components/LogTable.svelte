@@ -4,8 +4,6 @@
 	import {
 		Table,
 		TableBody,
-		TableBodyCell,
-		TableBodyRow,
 		TableHead,
 		TableHeadCell,
 	} from "flowbite-svelte";
@@ -13,17 +11,15 @@
 	import type { LogData } from "$lib/interfaces";
 
 	export let data: Array<LogData>;
+	export let showWeight: boolean;
 </script>
 <Table class="w-full">
 	<TableHead >
 		<TableHeadCell>Date</TableHeadCell>
 		<TableHeadCell><TableHeading color="red">Sets</TableHeading></TableHeadCell>
 		<TableHeadCell><TableHeading color="blue">Reps</TableHeading></TableHeadCell>
-    <!-- BUG: if no data exists-->
-		{#if data.length != 0}
-			{#if data[0].weight != -1}
-				<TableHeadCell><TableHeading color="green">Weight</TableHeading></TableHeadCell>
-			{/if}
+		{#if showWeight}
+			<TableHeadCell><TableHeading color="green">Weight</TableHeading></TableHeadCell>
 		{/if}
 	</TableHead>
 	<TableBody>
