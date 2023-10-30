@@ -24,7 +24,7 @@
 </svelte:head>
 
 
-<div class="grid grid-cols-3 auto-rows-max gap-3">
+<div class="h-full grid grid-cols-3 auto-rows-max gap-3">
 	{#each data as routine} 
 		<Card class="h-44 text-center" href="/routines/${routine.id}">
 		<h3>{routine.name}</h3>

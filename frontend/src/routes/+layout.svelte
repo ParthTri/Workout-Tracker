@@ -20,7 +20,7 @@
 	<title>Workout Tracker</title>
 </svelte:head>
 
-<main class="grid md:grid-cols-[0.1fr_1fr]">
+<main>
 	<slot />
 
 	<BottomNav position="absolute" navType="group" classInner="grid-cols-4">
