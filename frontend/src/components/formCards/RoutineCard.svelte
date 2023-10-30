@@ -6,6 +6,7 @@
 
 	import type { RoutineData } from "$lib/interfaces.ts"
 	import { createRoutine, extractFormData } from "$lib/create.ts";
+	import CardWrapper from './CardWrapper.svelte';
 
 	export let updateState: (val: any) => void;
 	export let toggleShow : () => void;
@@ -29,12 +30,12 @@
 	}
 </script>
 
-<Card class="min-h-fit absolute left-2/4 top-2/4 translate-x-[-50%] translate-y-[-50%] w-96 drop-shadow-2xl">
+<CardWrapper {toggleShow}>
 	<form class="h-full grid grid-cols-1 grid-rows-auto gap-4" on:submit|preventDefault={(e) => handleSubmission(e)}>
-	<FormLabel name="name" label="Routien Name">
+	<FormLabel name="name" label="Routine Name">
 		<input name="name" type="text" value=""/>
 	</FormLabel>
 
 	<Button>Create</Button>
 	</form>
-</Card>
+</CardWrapper>

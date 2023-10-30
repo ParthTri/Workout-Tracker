@@ -1,10 +1,12 @@
 <script lang="ts">
-	export let toggleShow;
+	import { PlusSolid } from "flowbite-svelte-icons";
+	export let toggleShow: () => void;
 </script>
 
 <div
-	class="absolute bottom-[10px] right-[12px] w-12 h-12 border-2 border-black rounded-full p-2 hover:cursor-pointer"
-	on:click="{toggleShow}"
+	class="absolute bottom-[60px] right-[12px] w-12 h-12 border-2 border-black rounded-full p-2 hover:cursor-pointer"
+	on:click={toggleShow}
 >
-	<img alt="+" src="/plus-black.png" />
+
+	<PlusSolid class="h-full w-full"/>
 </div>

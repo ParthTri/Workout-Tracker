@@ -3,6 +3,7 @@
 
 	import { extractFormData, createLog } from '$lib/create';
 	import type { LogData } from '$lib/interfaces';
+	import CardWrapper from './CardWrapper.svelte';
 
 
 	export let excerciseID: string = "";
@@ -33,7 +34,7 @@
 
 </script>
 
-<Card class="absolute left-2/4 top-2/4 translate-x-[-50%] translate-y-[-50%] w-96 drop-shadow-2xl">
+<CardWrapper {toggleShow}>
 	<form class="grid grid-cols-1 grid-rows-auto gap-4"
 		on:submit|preventDefault={(e) => handleSubmission(e)}>
 		<label class="flex flex-col" for="date">
@@ -63,5 +64,5 @@
 			Log
 		</button>
 	</form>
-</Card>
+</CardWrapper>
 

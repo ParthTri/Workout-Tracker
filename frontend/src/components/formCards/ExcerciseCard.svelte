@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Card } from 'flowbite-svelte';
+	import CardWrapper from './CardWrapper.svelte';
 	import FormLabel from "./FormLabel.svelte"
 	import Button from "./Button.svelte"
 	import type { ExcerciseData } from "$lib/interfaces.ts"
@@ -35,19 +35,19 @@
 	}
 </script>
 
-<Card class="min-h-fit absolute left-2/4 top-2/4 translate-x-[-50%] translate-y-[-50%] w-96 drop-shadow-2xl">
+<CardWrapper {toggleShow}>
 	<form class="h-full grid grid-cols-1 grid-rows-auto gap-4" on:submit|preventDefault={(e) => handleSubmission(e)}>
-	<FormLabel name="name" label="Excercise Name">
-		<input name="name" type="text" value=""/>
-	</FormLabel>
+		<FormLabel name="name" label="Excercise Name">
+			<input name="name" type="text" value=""/>
+		</FormLabel>
 
-	<FormLabel name="weight" label="">
-		<span>
-			<input name="weight" type="checkbox" value=""/>
-			Weight
-		</span>
-	</FormLabel>
+		<FormLabel name="weight" label="">
+			<span>
+				<input name="weight" type="checkbox" value=""/>
+				Weight
+			</span>
+		</FormLabel>
 
-	<Button>Create</Button>
+		<Button>Create</Button>
 	</form>
-</Card>
+</CardWrapper>
