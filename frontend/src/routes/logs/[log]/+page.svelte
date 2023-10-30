@@ -24,7 +24,7 @@
 	// BUG: New Routines not showing weight
 </script>
 
-<section class="grid grid-rows-[2fr_1fr]">
+<section class="grid grid-rows-[3fr_1fr] gap-2">
 	<LineGraph data={dataLogs} {showWeight} {excerciseID}/>
 	<LogTable data={dataLogs}/>
 	<Add {toggleShow}/>
