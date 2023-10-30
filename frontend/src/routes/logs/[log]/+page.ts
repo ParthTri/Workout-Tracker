@@ -18,7 +18,5 @@ export async function load({ fetch, params }) {
 	json.urlId = params.log.substring(1)
 	json.weight = excerciseData.Weight
 	
-	console.log(json)
-
 	return json;
 }
