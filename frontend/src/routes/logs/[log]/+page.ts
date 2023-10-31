@@ -1,3 +1,5 @@
+export const ssr = false;
+
 export async function load({ fetch, params }) {
 	let data = await fetch(
 		`http://127.0.0.1:8090/api/collections/Log/records?filter=ExcerciseID='${params.log.substring(
@@ -16,7 +18,7 @@ export async function load({ fetch, params }) {
 	let excerciseData = await excercise.json()
 
 	json.urlId = params.log.substring(1)
-	json.weight = excerciseData.Weight
+	json.excerciseData = excerciseData
 	
 	return json;
 }
