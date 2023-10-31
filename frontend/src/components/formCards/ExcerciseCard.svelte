@@ -20,7 +20,7 @@
 			RoutineID: routineID,
 			Date: date,
 			Name: tmp.name,
-			Weight: tmp.weight ? 0 : -1,
+			Weight: tmp.weight,
 			Active: true,
 		}
 		
@@ -32,14 +32,14 @@
 				console.log(res)
 			}
 		})
-	}
-</script>
+		}
+	</script>
 
-<CardWrapper {toggleShow}>
-	<form class="h-full grid grid-cols-1 grid-rows-auto gap-4" on:submit|preventDefault={(e) => handleSubmission(e)}>
-		<FormLabel name="name" label="Excercise Name">
-			<input name="name" type="text" value=""/>
-		</FormLabel>
+	<CardWrapper {toggleShow}>
+		<form class="h-full grid grid-cols-1 grid-rows-auto gap-4" on:submit|preventDefault={(e) => handleSubmission(e)}>
+			<FormLabel name="name" label="Excercise Name">
+				<input name="name" type="text" value=""/>
+			</FormLabel>
 
 		<FormLabel name="weight" label="">
 			<span>
