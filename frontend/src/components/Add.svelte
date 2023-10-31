@@ -4,7 +4,7 @@
 </script>
 
 <div
-	class="absolute bottom-[60px] right-[12px] w-12 h-12 border-2 border-black rounded-full p-2 hover:cursor-pointer"
+	class="absolute bottom-[60px] right-[12px] w-12 h-12 border-2 border-black rounded-full p-2 hover:cursor-pointer bg-white"
 	on:click={toggleShow}
 >
 
