@@ -11,6 +11,7 @@ export interface ExcerciseData {
 	Date: string;
 	Name: string;
 	Weight: number;
+	Active: boolean;
 }
 
 export interface RoutineData {
