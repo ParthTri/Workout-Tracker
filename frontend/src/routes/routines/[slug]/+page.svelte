@@ -6,12 +6,13 @@
 	import ExcerciseCard from "$components/formCards/ExcerciseCard.svelte"
 
 	import { stripTime } from "$lib/formatting.ts";
+	import type { RoutineData } from '$lib/interfaces.js';
 
 	export let data;
 
 	let dataItems = data.items
 
-	const addData = (log) => {
+	const addData = (log: RoutineData) => {
 		dataItems.push(log);
 		dataItems = dataItems;
 	}
