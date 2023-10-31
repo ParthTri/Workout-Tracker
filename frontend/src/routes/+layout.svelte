@@ -1,16 +1,28 @@
 <script lang="ts">
 	import "../app.postcss";
 	import { BottomNav, BottomNavItem } from 'flowbite-svelte';
-	import { HomeSolid, GridSolid, AdjustmentsVerticalSolid } from 'flowbite-svelte-icons';
+	import DisplayIcon from "$components/DisplayIcon.svelte";
 
 	var routes = [
 		{
 			name: "Dash",
-			path: "/"
+			path: "/",
+			icon: "HomeSolid",
 		},
 		{
 			name: "Routines",
-			path:"/routines"
+			path:"/routines",
+			icon: "GridSolid"	
+		},
+		{
+			name: "Stats",
+			path:"/stats",
+			icon: "RulerCombinedSolid",
+		},
+		{
+			name: "Settings",
+			path:"/settings",
+			icon: "AdjustmentsVerticalSolid",
 		}
 	]
 </script>
@@ -22,17 +34,10 @@
 </main>
 
 <BottomNav navType="group" classInner="bottom-0 left-0 grid-cols-4">
-	<BottomNavItem href="/">
-		<HomeSolid />
-	</BottomNavItem>
-
-	<BottomNavItem href="/routines">
-		<GridSolid />
-	</BottomNavItem>
-
-	<BottomNavItem hrerf="/settings">
-		<AdjustmentsVerticalSolid />
-	</BottomNavItem>
-
+	{#each routes as route}
+		<BottomNavItem href={route.path}>
+			<DisplayIcon name={route.icon}/>
+		</BottomNavItem>
+	{/each}
 </BottomNav>
 
