@@ -99,4 +99,6 @@
 
 </script>
 
-<div id="vis" bind:this={vis}></div>
+<div id="vis" 
+	bind:this={vis} 
+	class="max-h-[75vh] min-h-[50vh]"></div>

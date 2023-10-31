@@ -26,7 +26,7 @@
 	<title>{data.excerciseData.Name}</title>
 </svelte:head>
 
-<section class="grid grid-rows-[3fr_1fr] gap-2">
+<section class="grid grid-rows-[2fr_1fr] gap-2 pb-14">
 	<LineGraph data={dataLogs} {showWeight} {excerciseID}/>
 
 <!-- BUG: When data is added to table the height changes and goes off the page -->
