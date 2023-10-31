@@ -28,7 +28,7 @@
 	{#each data as routine} 
 		<Card class="h-44 text-center" href="/routines/${routine.id}">
 		<h3>{routine.name}</h3>
-		<h5>{stripTime(routine.created)}</h5>
+		<h5>{stripTime(routine.updated)}</h5>
 		</Card>
 	{/each}
 
