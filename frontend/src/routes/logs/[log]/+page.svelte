@@ -19,11 +19,17 @@
 	let show = false;
 	const toggleShow = () => show = !show;
 	let excerciseID = data != undefined ? data.urlId : "";
-	let showWeight = data.weight;
+	let showWeight = data.excerciseData.weight;
 </script>
+
+<svelte:head>
+	<title>{data.excerciseData.Name}</title>
+</svelte:head>
 
 <section class="grid grid-rows-[3fr_1fr] gap-2">
 	<LineGraph data={dataLogs} {showWeight} {excerciseID}/>
+
+<!-- BUG: When data is added to table the height changes and goes off the page -->
 	<LogTable data={dataLogs} {showWeight}/>
 	<Add {toggleShow}/>
 

@@ -7,18 +7,18 @@
 
 	import { stripTime } from "$lib/formatting.ts";
 
- export let data;
+	export let data;
 
-	data = data.items
+	let dataItems = data.items
 
 	const addData = (log) => {
-		data.push(log);
-		data = data;
+		dataItems.push(log);
+		dataItems = dataItems;
 	}
 
 	let routineID: string;
 	try {
-		 routineID = data[0].RoutineID;
+		routineID = dataItems[0].RoutineID;
 	} catch {
 		routineID = $page.url.pathname.split("/").pop().substring(1)
 	}
@@ -27,24 +27,28 @@
 	const toggleShow = () => show = !show;
 </script>
 
+<svelte:head>
+	<title>{data.routineData.name}</title>
+</svelte:head>
+
 <div class="grid grid-cols-3 auto-rows-max gap-3">
-		{#if data.length > 0}
-			{#each data as routine} 
-					{#if routine.Active == true}
-						<Card class="h-44 text-center" href="/logs/${routine.id}">
-								<h3>{routine.Name}</h3>
-								<h5>{stripTime(routine.Created)}</h5>
-						</Card>
-					{/if}
-			{/each}
-		{:else}
-			<p>Nothing here</p>		
-		
-		{/if}
+	{#if dataItems.length > 0}
+		{#each dataItems as routine} 
+			{#if routine.Active == true}
+				<Card class="h-44 text-center" href="/logs/${routine.id}">
+					<h3>{routine.Name}</h3>
+					<h5>{stripTime(routine.Created)}</h5>
+				</Card>
+			{/if}
+		{/each}
+	{:else}
+		<p>Nothing here</p>		
 
-		<Add {toggleShow}/>
+	{/if}
 
-		{#if show}
-			<ExcerciseCard {routineID} {toggleShow} updateState={addData}/>
-		{/if}
+	<Add {toggleShow}/>
+
+	{#if show}
+		<ExcerciseCard {routineID} {toggleShow} updateState={addData}/>
+	{/if}
 </div>
