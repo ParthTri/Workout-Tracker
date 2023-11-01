@@ -19,3 +19,9 @@ export interface RoutineData {
 	name: string;
 	created?: string;
 }
+
+export interface StatData {
+	id?: string;
+	Name: string;
+	created?: string;
+}

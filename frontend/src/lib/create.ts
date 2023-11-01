@@ -1,4 +1,4 @@
-import type { ExcerciseData, LogData, RoutineData } from "./interfaces.ts";
+import type { ExcerciseData, LogData, RoutineData, StatData } from "./interfaces.ts";
 
 export function extractFormData(form: HTMLFormElement, obj: any): void {
 	for (let i = 0; i < form.target.length; i++) {
@@ -78,6 +78,26 @@ export async function createRoutine(
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify(log),
+		},
+	);
+
+	return response.json();
+}
+
+export async function createStat(
+	stat: StatData,
+): Promise<any> {
+	let response = await fetch(
+		"http://127.0.0.1:8090/api/collections/Stats/records",
+		{
+			method: "POST",
+			mode: "cors",
+			cache: "no-cache",
+			credentials: "same-origin",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(stat),
 		},
 	);
 
