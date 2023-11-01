@@ -1,6 +1,6 @@
-<script>
-	export let name;
-	export let label;
+<script lang="ts">
+	export let name: string;
+	export let label: string;
 </script>
 
 <label class="flex flex-col" for={name}>
