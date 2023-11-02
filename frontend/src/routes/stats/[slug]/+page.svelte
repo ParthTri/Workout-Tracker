@@ -1,12 +1,12 @@
 <script lang="ts">
 	import LineGraph from "$components/LineGraph.svelte";
+	import StatTable from "$components/StatTable.svelte";
 
 	export let data: any;
 	let dataItems = data.items;
 
 	let statId = data.stat.collectionId;
-	console.log(data.stat)
-	let targetAndColour: Array<Array<string>> = [[data.stat.Unit, "steelblue"]]
+	let targetAndColour: Array<Array<string>> = [[data.stat.Unit, "blue"]]
 </script>
 
 <svelte:head>
@@ -15,4 +15,6 @@
 
 <div>
 	<LineGraph data={dataItems} showWeight={false} excerciseID={statId} {targetAndColour}/>
+
+	<StatTable {data} {targetAndColour}/>
 </div>
