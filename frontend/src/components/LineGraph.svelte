@@ -8,6 +8,7 @@
 	export let data: Array<LogData> = [];
 	export let showWeight: boolean;
 	export let excerciseID;
+	export let targetAndColour: Array<Array<string>>
 
 	let vis: HTMLElement;
 
@@ -86,15 +87,10 @@
     		.call(d3.axisLeft(yScale));
 
 		// Reps
-		GraphPoints(svg, "steelblue", data, xScale, yScale, "reps")
-
-		// Sets
-		GraphPoints(svg, "red", data, xScale, yScale, "sets")
-
-		if (first.weight != -1) {
-			GraphPoints(svg, "green", data, xScale, yScale, "weight")
-		}
-		
+		targetAndColour.map(element => {
+			console.log(element)
+			GraphPoints(svg, element[1], data, xScale, yScale, element[0])
+		})
 	}
 
 </script>
