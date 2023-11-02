@@ -20,6 +20,12 @@
 	const toggleShow = () => show = !show;
 	let excerciseID = data != undefined ? data.urlId : "";
 	let showWeight = data.excerciseData.weight;
+
+	let targetAndColour = [["reps", "steelblue"], ["sets", "red"]]
+	if (showWeight) {
+		targetAndColour.push(["weight", "green"])
+	}
+	console.log(showWeight)
 </script>
 
 <svelte:head>
@@ -27,7 +33,7 @@
 </svelte:head>
 
 <section class="grid grid-rows-[2fr_1fr] gap-2 pb-14">
-	<LineGraph data={dataLogs} {showWeight} {excerciseID}/>
+	<LineGraph data={dataLogs} {showWeight} {excerciseID} {targetAndColour}/>
 
 <!-- BUG: When data is added to table the height changes and goes off the page -->
 	<LogTable data={dataLogs} {showWeight}/>
