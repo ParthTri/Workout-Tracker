@@ -4,6 +4,6 @@
 </script>
 
 <span class="flex items-center space-between">
-	<Indicator color={color}/>
+	<Indicator {color}/>
 	<slot />
 </span>
