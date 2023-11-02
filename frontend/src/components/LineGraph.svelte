@@ -87,10 +87,7 @@
     		.call(d3.axisLeft(yScale));
 
 		// Reps
-		targetAndColour.map(element => {
-			console.log(element)
-			GraphPoints(svg, element[1], data, xScale, yScale, element[0])
-		})
+		targetAndColour.map(element => GraphPoints(svg, element[1], data, xScale, yScale, element[0]) )
 	}
 
 </script>
