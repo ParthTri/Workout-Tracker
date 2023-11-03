@@ -25,3 +25,10 @@ export interface StatData {
 	Name: string;
 	created?: string;
 }
+
+export interface StatLogData {
+	id?: string;
+	date: string;
+	Measurement: number;
+}
+
