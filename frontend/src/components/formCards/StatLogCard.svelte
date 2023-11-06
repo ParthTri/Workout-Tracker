@@ -3,10 +3,11 @@
 	import Button from "./Button.svelte";
 	import FormLabel from "./FormLabel.svelte";
 
-	import { extractFormData } from "$lib/create";
+	import { extractFormData, createStatLog } from "$lib/create";
 
 	import type { StatLogData } from "$lib/interfaces";
 
+	export let statID: string;
 	export let updateState: (obj: StatLogData) => void;
 	export let toggleShow: () => void;
 
@@ -15,9 +16,16 @@
 	const handleSubmission = (e: HTMLFormElement) => {
 		let stat = {} as StatLogData;
 		extractFormData(e, stat);
-		console.log(stat)
-		updateState(stat)
-		toggleShow()
+
+		createStatLog(stat, statID)
+			.then(res => {
+				if (res.code == undefined) {
+					updateState(stat)
+					toggleShow()
+				} else {
+					console.log(res)
+				}
+		})
 	}
 
 </script>
