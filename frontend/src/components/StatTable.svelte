@@ -10,7 +10,6 @@
 
 	export let data: Array<any>;
 	export let targetAndColour: Array<Array<string>>;
-	console.log(targetAndColour[0][1])
 </script>
 <Table class="w-full">
 	<TableHead >
@@ -18,7 +17,7 @@
 		<TableHeadCell><TableHeading color={targetAndColour[0][1]}>{targetAndColour[0][0]}</TableHeading></TableHeadCell>
 	</TableHead>
 	<TableBody>
-		{#each data.items as log} 
+		{#each data as log} 
 			<StatRow {log}/>
 		{/each}
 	</TableBody>
