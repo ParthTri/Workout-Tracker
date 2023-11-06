@@ -9,7 +9,7 @@
 	export let data: any;
 	let dataItems: Array<StatLogData> = data.items;
 
-	let statId = data.stat.collectionId;
+	let statId = data.stat.id;
 	let targetAndColour: Array<Array<string>> = [[data.stat.Unit, "blue"]]
 
 	let show = false;
@@ -34,6 +34,6 @@
 	<Add {toggleShow}/>
 
 	{#if show}
-		<StatLogCard {toggleShow} {updateState}/>	
+		<StatLogCard {toggleShow} {updateState} statID={statId}/>	
 	{/if}
 </div>
