@@ -2,6 +2,7 @@
 	import EditableCard from '$components/EditableCard.svelte';
 	import Add from '$components/Add.svelte';
 	import StatCard from '$components/formCards/StatCard.svelte';
+	import ContentWrapper from '$components/ContentWrapper.svelte';
 
 	import { stripTime } from '$lib/formatting';
 	import type { StatData } from '$lib/interfaces'
@@ -24,10 +25,10 @@ console.log(dataItems)
 	<title>Stats</title>
 </svelte:head>
 
-<div class="grid grid-cols-3 auto-rows-max gap-3">
+<ContentWrapper>
 	{#if dataItems.length > 0}
 		{#each dataItems as stat} 
-			<EditableCard innerClass="h-44 text-center" href="/stats/{stat.id}">
+			<EditableCard href="/stats/{stat.id}">
 				<h3>{stat.Name}</h3>
 				<h5>{stripTime(stat.Created)}</h5>
 			</EditableCard>
@@ -41,4 +42,4 @@ console.log(dataItems)
 	{#if show}
 		<StatCard updateState={addData} {toggleShow}/>
 	{/if}
-</div>
+</ContentWrapper>
