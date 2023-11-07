@@ -1,1 +1,25 @@
 #+TITLE: Workout Tracker
+
+** NOTE
+Please note that this project is under development. Currently the following are supported features:
+- Routines
+- Excercises
+- Stats
+
+** Overview
+This self-hostable Workout Tracker (name pending) is designed to provide an easy way to keep track of your workout progress.
+Users can create routines, which consist of excercises that can be tracked. Excercises can include tracking weight, reps, and sets.
+
+*** Features
+- User-Friendly Interface
+- Progress Tracking
+- Completly Customizable Dashboard
+
+** Installation
+We are currently working on getting a proper installation guide that allows a quick and easy setup on the machine of your choosing.
+
+*** ONGOING Manual 
+*** ONGOING Docker
+
+** Tech Stack
+The project is built using Sveltekit as a frontend framework, while PocketBase is being used as a backend with an inbuilt Sqlite database.
