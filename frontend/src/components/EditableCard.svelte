@@ -1,11 +1,12 @@
 <script lang="ts">
 	import  Dropdown  from "./DropDown/Dropdown.svelte"
 	import  DropdownItem  from "./DropDown/DropdownItem.svelte"
+	import { goto } from "$app/navigation";
 
 	// export let innerClass: string;
 	export let href: string;
 
-	let style = "w-80 h-44 text-center border-2 rounded-xl p-2"
+	let style = "w-80 h-44 text-center border-2 rounded-xl p-2 hover:cursor-pointer"
 	// style += ` ${innerClass}`
 	
 	let dropDownOpen = false;
@@ -17,7 +18,7 @@
 
 	const handleEvent = (e: MouseEvent) => {
 		if (!dropDownOpen && dropDownClosed) {
-			console.log(`Navigate to ${href}`)
+			goto(href)
 		} else {
 			dropDownClosed = !dropDownClosed;
 		}
