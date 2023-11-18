@@ -1,5 +1,14 @@
 import type { ExcerciseData, LogData, RoutineData, StatData, StatLogData } from "./interfaces.ts";
 
+import { browser, dev } from "$app/environment";
+
+let SECRET_SERVER_IP: string;
+if (browser && dev) {
+	SECRET_SERVER_IP = `${window.location.hostname}:8090`
+} else if (browser) {
+	SECRET_SERVER_IP = `${window.location.hostname}`
+}
+
 export function extractFormData(form: HTMLFormElement, obj: any): void {
 	for (let i = 0; i < form.target.length; i++) {
 		let currentElement: HTMLElement = form.target[i];
@@ -24,7 +33,7 @@ export async function createExercise(
 	data: ExcerciseData,
 ): Promise<any> {
 	let response = await fetch(
-		"http://127.0.0.1:8090/api/collections/Excercise/records",
+		`http://${SECRET_SERVER_IP}/api/collections/Excercise/records`,
 		{
 			method: "POST",
 			mode: "cors",
@@ -48,7 +57,7 @@ export async function createLog(
 	log.ExcerciseID = excerciseID;
 
 	let response = await fetch(
-		"http://127.0.0.1:8090/api/collections/Log/records",
+		`http://${SECRET_SERVER_IP}/api/collections/Log/records`,
 		{
 			method: "POST",
 			mode: "cors",
@@ -68,7 +77,7 @@ export async function createRoutine(
 	log: RoutineData,
 ): Promise<any> {
 	let response = await fetch(
-		"http://127.0.0.1:8090/api/collections/Routine/records",
+		`http://${SECRET_SERVER_IP}/api/collections/Routine/records`,
 		{
 			method: "POST",
 			mode: "cors",
@@ -88,7 +97,7 @@ export async function createStat(
 	stat: StatData,
 ): Promise<any> {
 	let response = await fetch(
-		"http://127.0.0.1:8090/api/collections/Stats/records",
+		`http://${SECRET_SERVER_IP}/api/collections/Stats/records`,
 		{
 			method: "POST",
 			mode: "cors",
@@ -110,7 +119,7 @@ export async function createStatLog(
 ): Promise<any> {
 	log.StatID = statID;
 	let response = await fetch(
-		"http://127.0.0.1:8090/api/collections/StatLog/records", 
+		`http://${SECRET_SERVER_IP}/api/collections/StatLog/records`, 
 		{
 			method: "POST",
 			mode: "cors",
