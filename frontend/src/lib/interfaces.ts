@@ -27,8 +27,12 @@ export interface StatData {
 }
 
 export interface StatLogData {
-	id?: string;
+	StatID?: string;
 	date: string;
 	Measurement: number;
 }
 
+export interface Data {
+	id?: string;
+	date: string;
+}
