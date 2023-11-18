@@ -51,12 +51,16 @@
 		left: 30
 	};
 
-	onMount(() => {
-		redraw();
-		window.addEventListener('resize', redraw);
-	})
 
-	function redraw(): void {
+	// TODO: Redraw graph when points are added
+	$: {
+		if (vis) {
+			window.addEventListener('resize', () => redraw(data));
+			redraw(data);
+		}
+	}
+
+	function redraw(data: Array<LogData>): void {
 		// empty vis div
 		d3.select(vis).html(null); 
 
