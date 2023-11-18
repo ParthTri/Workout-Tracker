@@ -5,6 +5,7 @@
 	import LogCard from "$components/formCards/LogCard.svelte"
 	import Notification from "$components/Notification.svelte"
 
+	// BUG: Linegraph doesn't render if requested from URL
 	import type { LogData } from "$lib/interfaces.js"
 
 	export let data;
