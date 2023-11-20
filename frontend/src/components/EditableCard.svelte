@@ -11,6 +11,8 @@
 	let style = "w-80 h-44 text-center border-2 rounded-xl p-2 hover:cursor-pointer"
 	// style += ` ${innerClass}`
 	
+	// BUG: Fix dropdown navigation
+	// Whenever pressing an option and clicking of the options navigation is triggered
 	let dropDownOpen = false;
 	let dropDownClosed = true;
 
