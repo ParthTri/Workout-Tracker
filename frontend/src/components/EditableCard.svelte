@@ -42,6 +42,10 @@
 			}
 		}
 	}
+
+	const triggerArchive = () => {
+		updateData({ Active: false }) 
+	}
 </script>
 
 
@@ -50,10 +54,9 @@
 <div class={style} on:click={(e) => handleEvent(e)}>
 	<div class="flex justify-end"> 
 		<Dropdown {updateDropDown}>
-				<DropdownItem action={() => console.log("rename")}>Rename</DropdownItem>	
-				<DropdownItem action={() => console.log("archive")}>Archive</DropdownItem>	
 				<DropdownItem action={() => console.log("delete")}>Delete</DropdownItem>	
 				<DropdownItem action={triggerRename}>Rename</DropdownItem>	
+				<DropdownItem action={triggerArchive}>Archive</DropdownItem>	
 		</Dropdown>
 	</div>
 	<div class="wrapper">
