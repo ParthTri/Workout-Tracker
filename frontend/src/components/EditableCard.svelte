@@ -5,6 +5,8 @@
 
 	// export let innerClass: string;
 	export let href: string;
+	export let title: string;
+	export let rename: (title: string) => void;
 
 	let style = "w-80 h-44 text-center border-2 rounded-xl p-2 hover:cursor-pointer"
 	// style += ` ${innerClass}`
@@ -23,6 +25,20 @@
 			dropDownClosed = !dropDownClosed;
 		}
 	}
+	let enableRename: boolean = false;
+	let prevTitle: string = title;
+	const triggerRename = () => {
+		enableRename = !enableRename;
+	}
+
+	const renameTitle = (e: KeyboardEvent) => {
+		if (e.key == "Enter") {
+			enableRename = false;	
+			if (title != prevTitle) {
+				rename(title);
+			}
+		}
+	}
 </script>
 
 
@@ -34,9 +50,16 @@
 				<DropdownItem action={() => console.log("rename")}>Rename</DropdownItem>	
 				<DropdownItem action={() => console.log("archive")}>Archive</DropdownItem>	
 				<DropdownItem action={() => console.log("delete")}>Delete</DropdownItem>	
+				<DropdownItem action={triggerRename}>Rename</DropdownItem>	
 		</Dropdown>
 	</div>
 	<div class="wrapper">
-		<slot></slot>
+		{#if enableRename}
+			<input type="text" bind:value={title} on:keypress={renameTitle}>
+		{:else}
+			<h3>{title}</h3>
+		{/if}
+
+		<slot name="other" />
 	</div>
 </div>
