@@ -6,7 +6,7 @@
 
 	import { stripTime } from '$lib/formatting';
 	import type { StatData } from '$lib/interfaces'
-	import { updateStat } from "$lib/update.ts"
+	import { updateStat } from "$lib/api/update"
 
 	export let data;
 	let dataItems = data.items;

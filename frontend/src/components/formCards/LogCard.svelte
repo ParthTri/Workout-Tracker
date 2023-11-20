@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Card } from 'flowbite-svelte';
 
-	import { extractFormData, createLog } from '$lib/create';
+	import { extractFormData, createLog } from '$lib/api/create';
 	import type { LogData } from '$lib/interfaces';
 	import CardWrapper from './CardWrapper.svelte';
 

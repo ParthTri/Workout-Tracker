@@ -4,7 +4,7 @@
 	import Button from "./Button.svelte"
 	import type { ExcerciseData } from "$lib/interfaces.ts"
 
-	import { extractFormData, createExercise } from '$lib/create';
+	import { extractFormData, createExercise } from '$lib/api/create';
 
 	let date = new Date().toISOString().split("T")[0];
 	export let routineID: string;

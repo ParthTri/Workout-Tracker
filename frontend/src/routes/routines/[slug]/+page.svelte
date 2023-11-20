@@ -8,7 +8,7 @@
 	import {page} from "$app/stores";
 	import { stripTime } from "$lib/formatting.ts";
 	import type { RoutineData } from '$lib/interfaces.js';
-	import { updateExcercise } from "$lib/update.ts"
+	import { updateExcercise } from "$lib/api/update"
 
 	export let data;
 

@@ -5,7 +5,7 @@
 	import EditableCard from '$components/EditableCard.svelte';
 	import ContentWrapper from "$components/ContentWrapper.svelte";
 
-	import { updateRoutine } from "$lib/update.ts"
+	import { updateRoutine } from "$lib/api/update"
 
 	import type { RoutineData } from "$lib/interfaces.ts"
 

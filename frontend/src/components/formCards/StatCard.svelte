@@ -3,7 +3,7 @@
 	import Button from './Button.svelte';
 	import FormLabel from './FormLabel.svelte';
 
-	import { extractFormData, createStat } from '$lib/create';
+	import { extractFormData, createStat } from '$lib/api/create';
 	import type { StatData } from "$lib/interfaces"
 
 	export let updateState: (obj: StatData) => void;

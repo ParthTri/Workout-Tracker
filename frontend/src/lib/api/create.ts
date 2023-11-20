@@ -1,4 +1,4 @@
-import type { ExcerciseData, LogData, RoutineData, StatData, StatLogData } from "./interfaces.ts";
+import type { ExcerciseData, LogData, RoutineData, StatData, StatLogData } from "../interfaces.ts";
 
 import { browser, dev } from "$app/environment";
 

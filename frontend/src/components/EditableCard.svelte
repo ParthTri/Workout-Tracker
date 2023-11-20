@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { Modal, Button } from "flowbite-svelte";
+	import { ExclamationCircleOutline } from "flowbite-svelte-icons";
 	import  Dropdown  from "./DropDown/Dropdown.svelte"
 	import  DropdownItem  from "./DropDown/DropdownItem.svelte"
 	import { goto } from "$app/navigation";
@@ -8,6 +10,8 @@
 	export let title: string;
 	export let updateData: (payload: any) => void;
 
+	let deleteModal = false;
+
 	let style = "w-80 h-44 text-center border-2 rounded-xl p-2 hover:cursor-pointer"
 	// style += ` ${innerClass}`
 	
@@ -15,7 +19,6 @@
 	// Whenever pressing an option and clicking of the options navigation is triggered
 	let dropDownOpen = false;
 	let dropDownClosed = true;
-
 	const updateDropDown = (val: boolean) => {
 		dropDownOpen = val;
 	}
@@ -46,6 +49,11 @@
 	const triggerArchive = () => {
 		updateData({ Active: false }) 
 	}
+
+	const triggerDelete = () => {
+		deleteModal = true;
+		console.log("Delete");
+	}
 </script>
 
 
@@ -54,9 +62,9 @@
 <div class={style} on:click={(e) => handleEvent(e)}>
 	<div class="flex justify-end"> 
 		<Dropdown {updateDropDown}>
-				<DropdownItem action={() => console.log("delete")}>Delete</DropdownItem>	
 				<DropdownItem action={triggerRename}>Rename</DropdownItem>	
 				<DropdownItem action={triggerArchive}>Archive</DropdownItem>	
+				<DropdownItem action={triggerDelete}>Delete</DropdownItem>	
 		</Dropdown>
 	</div>
 	<div class="wrapper">
@@ -68,4 +76,13 @@
 
 		<slot name="other" />
 	</div>
+
+	<Modal bind:open={deleteModal}>
+		<div class="text-center">
+			<ExclamationCircleOutline class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" />
+			<h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this Excercise?</h3>
+			<Button color="red" class="mr-2">Yes, I'm sure</Button>
+			<Button color="alternative" on:click={() => deleteModal=false}>No, cancel</Button>
+		</div>
+	</Modal>
 </div>

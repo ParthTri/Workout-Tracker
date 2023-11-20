@@ -3,7 +3,7 @@
 	import Button from "./Button.svelte";
 	import FormLabel from "./FormLabel.svelte";
 
-	import { extractFormData, createStatLog } from "$lib/create";
+	import { extractFormData, createStatLog } from "$lib/api/create";
 
 	import type { StatLogData } from "$lib/interfaces";
 

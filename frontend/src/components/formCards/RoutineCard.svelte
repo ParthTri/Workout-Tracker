@@ -5,7 +5,7 @@
 	import Button from "./Button.svelte"
 
 	import type { RoutineData } from "$lib/interfaces.ts"
-	import { createRoutine, extractFormData } from "$lib/create.ts";
+	import { createRoutine, extractFormData } from "$lib/api/create";
 	import CardWrapper from './CardWrapper.svelte';
 
 	export let updateState: (val: any) => void;
