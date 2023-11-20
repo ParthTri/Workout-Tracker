@@ -7,11 +7,7 @@ if (browser && dev) {
 	SECRET_SERVER_IP = `${window.location.hostname}`
 }
 
-export async function updateRoutineName(id: string, name: string): Promise<any>{
-	let payload = {
-		name: name,	
-	}
-
+export async function updateRoutine(id: string, payload: any): Promise<any>{
 	let request = await fetch(`http://${SECRET_SERVER_IP}/api/collections/Routine/records/${id}`,
 		{
 			method: "PATCH",
@@ -28,11 +24,7 @@ export async function updateRoutineName(id: string, name: string): Promise<any>{
 	return response;
 }
 
-export async function updateExcerciseName(id: string, name: string): Promise<any>{
-	let payload = {
-		Name: name,	
-	}
-
+export async function updateExcercise(id: string, payload: any): Promise<any>{
 	let request = await fetch(`http://${SECRET_SERVER_IP}/api/collections/Excercise/records/${id}`,
 		{
 			method: "PATCH",

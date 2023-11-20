@@ -6,7 +6,7 @@
 	// export let innerClass: string;
 	export let href: string;
 	export let title: string;
-	export let rename: (title: string) => void;
+	export let updateData: (payload: any) => void;
 
 	let style = "w-80 h-44 text-center border-2 rounded-xl p-2 hover:cursor-pointer"
 	// style += ` ${innerClass}`
@@ -38,7 +38,7 @@
 		if (e.key == "Enter") {
 			enableRename = false;	
 			if (title != prevTitle) {
-				rename(title);
+				updateData({ name: title });
 			}
 		}
 	}
