@@ -36,7 +36,7 @@
 
 <ContentWrapper>
 	{#each data as routine} 
-		<EditableCard href={`/routines/${routine.id}`} title={routine.name} updateData={updateData(routine.id)}>
+		<EditableCard href={`/routines/${routine.id}`} title={routine.Name} updateData={updateData(routine.id)}>
 			<svelte:fragment slot="other">
 				<h5>{stripTime(routine.updated)}</h5>
 			</svelte:fragment>

@@ -40,7 +40,7 @@
 </script>
 
 <svelte:head>
-	<title>{data.routineData.name}</title>
+	<title>{data.routineData.Name}</title>
 </svelte:head>
 
 <ContentWrapper>
