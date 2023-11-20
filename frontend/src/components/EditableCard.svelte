@@ -38,7 +38,7 @@
 		if (e.key == "Enter") {
 			enableRename = false;	
 			if (title != prevTitle) {
-				updateData({ name: title });
+				updateData({ Name: title });
 			}
 		}
 	}
