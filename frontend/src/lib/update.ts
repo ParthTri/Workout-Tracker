@@ -40,3 +40,20 @@ export async function updateExcercise(id: string, payload: any): Promise<any>{
 
 	return response;
 }
+
+export async function updateStat(id: string, payload: any): Promise<any> {
+	let request = await fetch(`http://${SECRET_SERVER_IP}/api/collections/Stats/records/${id}`,
+		{
+			method: "PATCH",
+			mode: "cors",
+			credentials: "same-origin",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(payload),
+	})
+
+	let response = await request.json();
+
+	return response;
+}
