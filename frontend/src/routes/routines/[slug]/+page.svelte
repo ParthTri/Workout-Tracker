@@ -8,6 +8,7 @@
 	import {page} from "$app/stores";
 	import { stripTime } from "$lib/formatting.ts";
 	import type { RoutineData } from '$lib/interfaces.js';
+	import { updateExcerciseName } from "$lib/update.ts"
 
 	export let data;
 
@@ -19,6 +20,7 @@
 	}
 
 	let routineID: string;
+
 	try {
 		routineID = dataItems[0].RoutineID;
 	} catch {
@@ -27,6 +29,14 @@
 
 	let show = false;
 	const toggleShow = () => show = !show;
+
+	const updateName = (id: string) => {
+		const update = (newName: string) => {
+			updateExcerciseName(id, newName)
+		}
+
+		return update;
+	}
 </script>
 
 <svelte:head>
@@ -37,9 +47,10 @@
 	{#if dataItems.length > 0}
 		{#each dataItems as routine} 
 			{#if routine.Active == true}
-				<EditableCard href="/logs/${routine.id}">
-					<h3>{routine.Name}</h3>
-					<h5>{stripTime(routine.Created)}</h5>
+				<EditableCard href="/logs/${routine.id}" title={routine.Name} rename={updateName(routine.id)}>
+					<svelte:fragment slot="other">
+						<h5>{stripTime(routine.Created)}</h5>
+					</svelte:fragment>
 				</EditableCard>
 			{/if}
 		{/each}

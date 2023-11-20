@@ -27,6 +27,7 @@
 			dropDownClosed = !dropDownClosed;
 		}
 	}
+
 	let enableRename: boolean = false;
 	let prevTitle: string = title;
 	const triggerRename = () => {

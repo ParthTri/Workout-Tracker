@@ -27,3 +27,24 @@ export async function updateRoutineName(id: string, name: string): Promise<any>{
 
 	return response;
 }
+
+export async function updateExcerciseName(id: string, name: string): Promise<any>{
+	let payload = {
+		Name: name,	
+	}
+
+	let request = await fetch(`http://${SECRET_SERVER_IP}/api/collections/Excercise/records/${id}`,
+		{
+			method: "PATCH",
+			mode: "cors",
+			credentials: "same-origin",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(payload),
+	})
+
+	let response = await request.json();
+
+	return response;
+}
