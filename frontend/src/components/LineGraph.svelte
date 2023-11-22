@@ -12,35 +12,34 @@
 
 	let vis: HTMLElement;
 
-	let today = new Date();
-	let first: LogData = data.length != 0 ? data[0] : {
-		ExcerciseID: excerciseID,
-		date: today,
-		sets: 0,
-		reps: 0,
-		weight: showWeight ? 0 : -1,
-	};
+	const getBounds = () => {
+		let today = new Date();
+		let first: LogData = data.length != 0 ? data[0] : {
+			ExcerciseID: excerciseID,
+			date: today,
+			sets: 0,
+			reps: 0,
+			weight: showWeight ? 0 : -1,
+		};
 
-	let later: Date = new Date()
-	if (today.getMonth() == 12) {
-		later.setFullYear(today.getFullYear()+1)
-		later.setMonth(1);
-	} else {
-		later.setMonth(today.getMonth() + 1);
+		let later: Date = new Date()
+		if (today.getMonth() == 12) {
+			later.setFullYear(today.getFullYear()+1)
+			later.setMonth(1);
+		} else {
+			later.setMonth(today.getMonth() + 1);
+		}
+
+		let last: LogData = data.length != 0 ? data[data.length - 1] : {
+			ExcerciseID: excerciseID,
+			date: later,
+			sets: 0,
+			reps: 0,
+			weight: showWeight ? 0 : -1,
+		};
+
+		return [first, last]
 	}
-
-	let last: LogData = data.length != 0 ? data[data.length - 1] : {
-		ExcerciseID: excerciseID,
-		date: later,
-		sets: 0,
-		reps: 0,
-		weight: showWeight ? 0 : -1,
-	};
-
-	data.map(val => {
-		let date = val.date.split(" ")[0]
-		val.date = new Date(date)
-	})
 
 	let width: number;
 	let height: number;
@@ -51,9 +50,13 @@
 		left: 30
 	};
 
-
-	// TODO: Redraw graph when points are added
 	$: {
+		data.map(val => {
+			if (typeof val.date == "string")  {
+				let date = val.date.toString().split(" ")[0]
+				val.date = new Date(date)
+			}
+		})
 		if (vis) {
 			window.addEventListener('resize', () => redraw(data));
 			redraw(data);
@@ -69,6 +72,7 @@
 		height = d3.select(vis).node().getBoundingClientRect().height - margin.top - margin.bottom;
 
 		let yScale = d3.scaleLinear().domain([0, 50]);
+		let [first, last] = getBounds();
 		let xScale = d3.scaleTime([first.date, last.date], [0, width])
 
 		// init scales according to new width & height
