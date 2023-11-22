@@ -7,6 +7,7 @@
 	import { stripTime } from '$lib/formatting';
 	import type { StatData } from '$lib/interfaces'
 	import { updateStat } from "$lib/api/update"
+	import { deleteStat } from "$lib/api/delete"
 
 	export let data;
 	let dataItems = data.items;
@@ -26,6 +27,15 @@
 		
 		return update;
 	}
+
+	const deleteData = (id: string) => {
+		const del = () => {
+			deleteStat(id)
+		}
+
+		return del;
+	}
+
 </script>
 
 <svelte:head>
@@ -36,7 +46,11 @@
 	{#if dataItems.length > 0}
 		{#each dataItems as stat} 
 			{#if stat.Active}
-				<EditableCard href={`/stats/${stat.id}`} title={stat.Name} updateData={updateData(stat.id)}>
+				<EditableCard 
+					href={`/stats/${stat.id}`} 
+					title={stat.Name} 
+					updateData={updateData(stat.id)} 
+					deleteData={deleteData(stat.id)}>
 					<svelte:fragment slot="other">
 						<h5>Units: {stat.Unit}</h5>
 						<p class="text-sm text-slate-600">{stripTime(stat.Created)}</p>

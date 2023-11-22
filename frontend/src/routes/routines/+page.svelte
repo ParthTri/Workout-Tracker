@@ -6,6 +6,7 @@
 	import ContentWrapper from "$components/ContentWrapper.svelte";
 
 	import { updateRoutine } from "$lib/api/update"
+	import { deleteRoutine } from "$lib/api/delete"
 
 	import type { RoutineData } from "$lib/interfaces.ts"
 
@@ -28,6 +29,14 @@
 		return update;
 	}
 
+	const deleteData = (id: string) => {
+		const del = () => {
+			deleteRoutine(id)
+		}
+
+		return del;
+	}
+
 </script>
 
 <svelte:head>
@@ -37,7 +46,11 @@
 <ContentWrapper>
 	{#each data as routine} 
 		{#if routine.Active}
-			<EditableCard href={`/routines/${routine.id}`} title={routine.Name} updateData={updateData(routine.id)}>
+			<EditableCard 
+				href={`/routines/${routine.id}`} 
+				title={routine.Name} 
+				updateData={updateData(routine.id)} 
+				deleteData={deleteData(routine.id)}>
 				<svelte:fragment slot="other">
 					<h5>{stripTime(routine.updated)}</h5>
 				</svelte:fragment>

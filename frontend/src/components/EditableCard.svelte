@@ -9,6 +9,7 @@
 	export let href: string;
 	export let title: string;
 	export let updateData: (payload: any) => void;
+	export let deleteData: () => void;
 
 	let deleteModal = false;
 
@@ -31,6 +32,7 @@
 		}
 	}
 
+	// BUG: Need to update prev title to the new title
 	let enableRename: boolean = false;
 	let prevTitle: string = title;
 	const triggerRename = () => {
@@ -52,7 +54,6 @@
 
 	const triggerDelete = () => {
 		deleteModal = true;
-		console.log("Delete");
 	}
 </script>
 
@@ -81,7 +82,10 @@
 		<div class="text-center">
 			<ExclamationCircleOutline class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" />
 			<h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this Excercise?</h3>
-			<Button color="red" class="mr-2">Yes, I'm sure</Button>
+			<Button color="red" class="mr-2" on:click={() => {
+				deleteModal = false;
+				deleteData();
+			}}>Yes, I'm sure</Button>
 			<Button color="alternative" on:click={() => deleteModal=false}>No, cancel</Button>
 		</div>
 	</Modal>

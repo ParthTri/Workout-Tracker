@@ -8,7 +8,9 @@
 	import {page} from "$app/stores";
 	import { stripTime } from "$lib/formatting.ts";
 	import type { RoutineData } from '$lib/interfaces.js';
+
 	import { updateExcercise } from "$lib/api/update"
+	import { deleteExcercise } from "$lib/api/delete"
 
 	export let data;
 
@@ -37,6 +39,14 @@
 
 		return update;
 	}
+
+	const deleteData = (id: string) => {
+		const del = () => {
+			deleteExcercise(id)
+		}
+
+		return del;
+	}
 </script>
 
 <svelte:head>
@@ -47,7 +57,11 @@
 	{#if dataItems.length > 0}
 		{#each dataItems as routine} 
 			{#if routine.Active == true}
-				<EditableCard href="/logs/${routine.id}" title={routine.Name} updateData={updateData(routine.id)}>
+				<EditableCard 
+					href="/logs/${routine.id}" 
+					title={routine.Name} 
+					updateData={updateData(routine.id)} 
+					deleteData={deleteData(routine.id)}>
 					<svelte:fragment slot="other">
 						<h5>{stripTime(routine.Created)}</h5>
 					</svelte:fragment>
