@@ -34,6 +34,20 @@
 
 	const updateData = (id: string) => {
 		const update = (payload: any) => {
+			dataItems.map((item: any, index: number) => {
+				if (item.id == id) {
+					let excercise = dataItems.splice(index, 1)[0]
+					if (payload.Name != undefined) {
+						excercise.Name = payload.Name;
+					} else if (payload.Active != undefined) {
+						excercise.Active = payload.Active;
+					}
+
+					dataItems.push(excercise)
+				}
+			})
+			dataItems = dataItems
+
 			updateExcercise(id, payload)
 		}
 

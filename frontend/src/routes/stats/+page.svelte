@@ -22,6 +22,21 @@
 
 	const updateData = (id: string) => {
 		const update = (payload: any) => {
+			dataItems.map((item: any, index: number) => {
+				if (item.id == id) {
+					let stat = dataItems.splice(index, 1)[0]
+					if (payload.Name != undefined) {
+						stat.Name = payload.Name;
+					} else if (payload.Active != undefined) {
+						stat.Active = payload.Active;
+					}
+
+					dataItems.push(stat)
+				}
+			})
+
+			dataItems = dataItems
+
 			updateStat(id, payload)
 		}
 		

@@ -21,8 +21,24 @@
 		data = data;
 	} 
 
+
 	const updateData = (id: string) => {
 		const update = (payload: any) => {
+			data.map((item: any, index: number) => {
+				if (item.id == id) {
+					let routine = data.splice(index, 1)[0]
+					if (payload.Name != undefined) {
+						routine.Name = payload.Name;
+					} else if (payload.Active != undefined) {
+						routine.Active = payload.Active;
+					}
+
+					data.push(routine)
+				}
+			})
+
+			data = data
+			
 			updateRoutine(id, payload)
 		}
 
