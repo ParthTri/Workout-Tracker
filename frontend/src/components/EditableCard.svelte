@@ -32,7 +32,6 @@
 		}
 	}
 
-	// BUG: Need to update prev title to the new title
 	let enableRename: boolean = false;
 	let prevTitle: string = title;
 	const triggerRename = () => {
@@ -44,6 +43,7 @@
 			enableRename = false;	
 			if (title != prevTitle) {
 				updateData({ Name: title });
+				prevTitle = title;
 			}
 		}
 	}
