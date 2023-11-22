@@ -20,7 +20,7 @@
 	let show = false;
 	const toggleShow = () => show = !show;
 	let excerciseID = data != undefined ? data.urlId : "";
-	let showWeight = data.excerciseData.weight;
+	let showWeight = data.excerciseData.Weight;
 
 	let targetAndColour = [["reps", "steelblue"], ["sets", "red"]]
 	if (showWeight) {
