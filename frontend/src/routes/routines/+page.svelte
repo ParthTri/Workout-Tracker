@@ -21,9 +21,8 @@
 		data = data;
 	} 
 
-
-	const updateData = (id: string) => {
-		const update = (payload: any) => {
+	const updateState = (id: string, payload?: any) => {
+		if (typeof payload != undefined) {
 			data.map((item: any, index: number) => {
 				if (item.id == id) {
 					let routine = data.splice(index, 1)[0]
@@ -33,12 +32,19 @@
 						routine.Active = payload.Active;
 					}
 
-					data.push(routine)
+					data.push(routine);
 				}
 			})
+		} else {
+			data.filter(item => item.id != id);
+		}
 
-			data = data
-			
+		data = data;
+	}
+
+	const updateData = (id: string) => {
+		const update = (payload: any) => {
+			updateState(id, payload);
 			updateRoutine(id, payload)
 		}
 
@@ -47,7 +53,8 @@
 
 	const deleteData = (id: string) => {
 		const del = () => {
-			deleteRoutine(id)
+			updateState(id)
+			// deleteRoutine(id)
 		}
 
 		return del;

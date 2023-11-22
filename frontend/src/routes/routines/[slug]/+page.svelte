@@ -32,22 +32,32 @@
 	let show = false;
 	const toggleShow = () => show = !show;
 
-	const updateData = (id: string) => {
-		const update = (payload: any) => {
+	const updateState = (id: string, payload?: any) => {
+		if (typeof payload != undefined) {
 			dataItems.map((item: any, index: number) => {
 				if (item.id == id) {
 					let excercise = dataItems.splice(index, 1)[0]
-					if (payload.Name != undefined) {
-						excercise.Name = payload.Name;
-					} else if (payload.Active != undefined) {
-						excercise.Active = payload.Active;
-					}
+					if (typeof payload != undefined) {
+						if (payload.Name != undefined) {
+							excercise.Name = payload.Name;
+						} else if (payload.Active != undefined) {
+							excercise.Active = payload.Active;
+						}
 
-					dataItems.push(excercise)
+						dataItems.push(excercise)
+					}
 				}
 			})
-			dataItems = dataItems
+		} else {
+			dataItems.filter(item => item.id != id)
+		}
 
+		dataItems = dataItems
+	}
+
+	const updateData = (id: string) => {
+		const update = (payload: any) => {
+			updateState(id, payload)
 			updateExcercise(id, payload)
 		}
 
@@ -56,6 +66,7 @@
 
 	const deleteData = (id: string) => {
 		const del = () => {
+			updateState(id)
 			deleteExcercise(id)
 		}
 

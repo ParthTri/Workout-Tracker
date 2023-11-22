@@ -20,23 +20,32 @@
 		dataItems = dataItems;
 	}
 
-	const updateData = (id: string) => {
-		const update = (payload: any) => {
+	const updateState = (id: string, payload?: any) => {
+		if (typeof payload != undefined) {
 			dataItems.map((item: any, index: number) => {
 				if (item.id == id) {
-					let stat = dataItems.splice(index, 1)[0]
-					if (payload.Name != undefined) {
-						stat.Name = payload.Name;
-					} else if (payload.Active != undefined) {
-						stat.Active = payload.Active;
-					}
+					let excercise = dataItems.splice(index, 1)[0]
+					if (typeof payload != undefined) {
+						if (payload.Name != undefined) {
+							excercise.Name = payload.Name;
+						} else if (payload.Active != undefined) {
+							excercise.Active = payload.Active;
+						}
 
-					dataItems.push(stat)
+						dataItems.push(excercise)
+					}
 				}
 			})
+		} else {
+			dataItems.filter(item => item.id != id)
+		}
 
-			dataItems = dataItems
+		dataItems = dataItems
+	}
 
+	const updateData = (id: string) => {
+		const update = (payload: any) => {
+			updateState(id, payload)
 			updateStat(id, payload)
 		}
 		
@@ -45,6 +54,7 @@
 
 	const deleteData = (id: string) => {
 		const del = () => {
+			updateState(id)
 			deleteStat(id)
 		}
 
