@@ -26,7 +26,15 @@
 	if (showWeight) {
 		targetAndColour.push(["weight", "green"])
 	}
-	console.log(showWeight)
+
+	let notify: boolean = false;
+	let notifyState: boolean = false;
+	let message: string = "";
+	let triggerNotification = (msg?: string, success?: boolean) => {
+		notify = !notify;
+		message = (msg != undefined) ? msg : "";
+		notifyState = success != undefined ? success : false;
+	}
 </script>
 
 <svelte:head>
@@ -34,6 +42,16 @@
 </svelte:head>
 
 <section class="grid grid-rows-[2fr_1fr] gap-2 pb-14">
+	{#if notify}
+		<Notification success={notifyState} toggleNotify={() => notify = false}>
+			<div slot="fail">
+				<h1>{message}</h1>
+			</div>	
+			<div slot="sucess">
+				<h1>{message}</h1>
+			</div>	
+		</Notification>
+	{/if}
 	<LineGraph data={dataLogs} {showWeight} {excerciseID} {targetAndColour}/>
 
 <!-- BUG: When data is added to table the height changes and goes off the page -->
@@ -41,11 +59,7 @@
 	<Add {toggleShow}/>
 
 	{#if show}
-		<LogCard updateState={addData} {showWeight} {excerciseID} {toggleShow} />
+		<LogCard updateState={addData} {showWeight} {excerciseID} {toggleShow} notify={triggerNotification}/>
 	{/if}
-
-	<!-- <Notification {success}>
-			 <p>Hello World</p>
-			 </Notification> -->
 </section>
 

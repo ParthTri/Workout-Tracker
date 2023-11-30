@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { Card } from 'flowbite-svelte';
-
 	import { extractFormData, createLog } from '$lib/api/create';
 	import type { LogData } from '$lib/interfaces';
 	import CardWrapper from './CardWrapper.svelte';
@@ -10,6 +8,7 @@
 	export let showWeight: boolean;
 	export let updateState: (obj: LogData) => void;
 	export let toggleShow: () => void;
+	export let notify: (message: string, success: boolean) => void;
 
 	let date = new Date().toISOString().split("T")[0];
 	
@@ -26,8 +25,10 @@
 				if (res.code == undefined) {
 					updateState(res)
 					toggleShow()
+					notify("Successfully created log", true)
 				} else {
-					console.log(res)
+					console.log(res.message)
+					notify(res.message, false)
 				} 
 		})
 	}
